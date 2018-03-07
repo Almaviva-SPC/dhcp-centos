@@ -14,7 +14,7 @@ max-lease-time 7200;
 #ddns-update-style none;
 ddns-update-style interim;
 ddns-updates on;
-ddns-domainname "spcsvil.internal";
+ddns-domainname "{{dnsdomainname}}";
 allow unknown-clients;
 update-static-leases on;
 use-host-decl-names on;
