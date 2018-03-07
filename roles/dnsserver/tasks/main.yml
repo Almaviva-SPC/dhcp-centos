@@ -1,0 +1,3 @@
+---
+- import_tasks: inastall_dns.yml
+#- import_tasks: config.yml

@@ -1,0 +1,3 @@
+---
+- import_tasks: inastall_dhcp.yml
+- import_tasks: config.yml

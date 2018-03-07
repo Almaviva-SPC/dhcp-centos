@@ -1,0 +1,8 @@
+- name: RedHat - Install DNS bind9
+  become: yes
+  yum:
+    name: bind,bind-utils
+    state: present
+    retries: 5
+    delay: 10
+  register: dns_installed
