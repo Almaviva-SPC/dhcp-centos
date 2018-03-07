@@ -1,0 +1,7 @@
+- name: RedHat - Install dhcp
+  become: yes
+  yum:
+    name: dhcp
+    state: present
+    retries: 5
+    delay: 10
