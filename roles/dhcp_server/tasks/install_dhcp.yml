@@ -5,3 +5,4 @@
     state: present
     retries: 5
     delay: 10
+  register: dhcp_installed 

@@ -1,0 +1,4 @@
+dnsdomainname: test.domain.it
+###You can specify more than one search domain like this esample
+### searchdomain: search.domain.local search.domain.local2
+searchdomain: test.domain.it
