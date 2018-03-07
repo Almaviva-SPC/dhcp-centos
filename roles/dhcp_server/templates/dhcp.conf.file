@@ -20,11 +20,10 @@ update-static-leases on;
 use-host-decl-names on;
 
 option domain-name "{{ dnsdomainname }}";
-#option domain-search "spcsvil.internal","app.spcsvil.internal";
 option domain-search "{{searchdomain}}";
-option domain-name-servers {{host_ip_discovery}};
-option netbios-name-servers {{host_ip_discovery}};
-option netbios-dd-server {{host_ip_discovery}};
+option domain-name-servers {{hostvars[item]['ansible_default_ipv4']['address']}};
+option netbios-name-servers {{hostvars[item]['ansible_default_ipv4']['address']}};
+option netbios-dd-server {{hostvars[item]['ansible_default_ipv4']['address']}};
 option netbios-node-type 8;
 
 # If this DHCP server is the official DHCP server for the local
@@ -44,19 +43,19 @@ subnet 10.152.187.0 netmask 255.255.255.0 {
 # This is a very basic subnet declaration.
 
 zone spcsvil.internal.  {
-        primary lsocpdns01.spcsvil.internal;
+        primary {{dnshostname}}.{{dnsdomainname}};
 }
 zone 108.116.10.in-addr.arpa. {
-        primary lsocpdns01.spcsvil.internal;
+        primary {{dnshostname}}.{{dnsdomainname}};
 }
 
 
 
-subnet 10.116.108.192 netmask 255.255.255.192 {
-  range 10.116.108.197 10.116.108.250;
-  option routers 10.116.108.193;
-  option domain-name-servers 10.116.108.196;
-  option domain-name "spcsvil.internal";
+subnet {{dhcpnetwork}} netmask {{netmask_dhcpnetowrk}} {
+  range {{dhcpnetworkrange}};
+  option routers {{gateway_address}};
+  option domain-name-servers {{hostvars[item]['ansible_default_ipv4']['address']}};
+  option domain-name "{{dnsdomainname}}";
 }
 
 # This declaration allows BOOTP clients to get dynamic addresses,
